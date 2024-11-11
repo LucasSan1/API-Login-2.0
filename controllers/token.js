@@ -43,7 +43,7 @@ const verificarToken = async (email, token, modelo) => {
       return 404; 
     }
   } catch (erro) {
-    console.log(error);
+    console.log(erro);
     return 500;
   }
 };

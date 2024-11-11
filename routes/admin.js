@@ -83,7 +83,7 @@ router.post("/admin/logout", async(req,res) => {
       token_admin,
       adminModelo
     );
-    console.log("opa", resultado_login)
+    
     switch (resultado_login) {
       case 200:
         res.status(200).json("Token removido");
