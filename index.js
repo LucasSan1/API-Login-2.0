@@ -90,16 +90,10 @@ mongoose
 
     const executar_script = async () => {
       script_admin();
-      try{
-        script_categoria();
-      } 
-      finally{
-        script_produto();
-
-      }
     };
 
     executar_script();
+    
   })
   .catch((erro) => {
     console.log("Erro ao conectar ao banco de dados: " + erro);

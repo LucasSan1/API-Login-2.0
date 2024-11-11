@@ -57,30 +57,30 @@ const removerToken = async (email, token, modelo) => {
       const usuario = resultado[0];
 
       if (usuario.token === token) {
-        await modelo.findOneAndUpdate(
+        const updatedUser = await modelo.findOneAndUpdate(
           { email: email },
-          { token: undefined },
+          { token: "" },
           { new: true }
-        )
-        .then((resultado) =>{
-          return 200; 
-          
-        })
-        .catch((erro) =>{
-          console.log(erro)
-          return 500 
-        })
+        );
+        
+        if (updatedUser) {
+          return 200;  // Retorne 200 se a atualização for bem-sucedida
+        } else {
+          console.log("Erro ao atualizar o token no banco de dados");
+          return 500;  // Retorne erro interno se a atualização falhar
+        }
       } else {
-        return 403; 
+        return 403;  // Token não corresponde
       }
     } else {
-      return 404;
+      return 404;  // Usuário não encontrado
     }
   } catch (erro) {
-    console.log(error);
-    return 500;
+    console.log(erro);
+    return 500;  // Erro de servidor
   }
 };
+
 
 module.exports = {
   gerarToken,
